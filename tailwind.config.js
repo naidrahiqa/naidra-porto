@@ -7,8 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        mono: ['"Fira Code"', 'Courier New', 'monospace'],
-        sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        sans: ['"Outfit"', 'sans-serif', 'system-ui'],
+        display: ['"Space Grotesk"', 'sans-serif'],
+        mono: ['"Fira Code"', 'monospace'],
       },
       colors: {
         primary: {

@@ -24,7 +24,7 @@
   backdrop-filter: blur(20px);
   border-radius: var(--radius-xl);
   padding: var(--spacing-2xl);
-  max-width: 450px;
+  max-width: 500px;
   width: 90%;
   box-shadow: 
     0 20px 60px rgba(0, 0, 0, 0.3),
@@ -51,8 +51,8 @@
 }
 
 .login-title {
-  font-family: var(--font-mono);
-  font-size: 2rem;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
   margin-bottom: var(--spacing-xs);
@@ -66,7 +66,8 @@
   text-align: center;
   color: var(--color-text-muted);
   margin-bottom: var(--spacing-xl);
-  font-size: 1rem;
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
 }
 
 .login-form {
@@ -80,9 +81,9 @@
 
 .login-input {
   width: 100%;
-  padding: var(--spacing-md) 3.5rem var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md) 3.5rem var(--spacing-md) var(--spacing-xl);
   font-family: var(--font-mono);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   text-align: center;
   letter-spacing: 0.1em;
   border: 2px solid var(--color-neutral-light);
