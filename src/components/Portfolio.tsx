@@ -8,7 +8,7 @@ import type { Project, PortfolioSettings } from '../types';
 import { fetchProjects, fetchSettings } from '../services/db';
 import { getSettings as getLocalSettings } from '../utils/storage'; 
 import ParticlesBackground from './ParticlesBackground';
-import ParticlesBackground from './ParticlesBackground';
+
 import InteractiveCard from './InteractiveCard';
 import './Portfolio.css';
 import './Portfolio-premium.css';
