@@ -8,7 +8,9 @@
   background: transparent;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  padding-top: 20px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   height: auto;
   display: flex;
   align-items: center;

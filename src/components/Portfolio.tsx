@@ -79,9 +79,9 @@ const Portfolio: React.FC = () => {
                   2000,
                   'Hello',
                   2000,
-                  'Konnichiwa',
+                  'こんにちは',
                   2000,
-                  'Sugeng Rawuh',
+                  'ꦱꦸꦒꦺꦁꦫꦮꦸꦃ',
                   2000,
                 ]}
                 wrapper="h1"
@@ -93,7 +93,7 @@ const Portfolio: React.FC = () => {
             
             {/* Description */}
             <div className="hero-description-wrapper">
-              <span className="static-text">I am <span className="highlight-text">{settings.name}</span>. I am a 1st-semester Software Engineering student.</span>
+              <span className="static-text">I am <span className="highlight-text">{settings.name}</span>. I am ₐₜₒₘᵢ𝒸~.</span>
             </div>
           </motion.div>
 
