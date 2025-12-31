@@ -1,0 +1,217 @@
+/* ===================================
+   PREMIUM EFFECTS & ANIMATIONS
+   =================================== */
+
+/* Floating Icons */
+.floating-icon {
+  position: absolute;
+  font-size: 4rem;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.floating-icon-1 {
+  top: 10%;
+  left: 10%;
+  color: #d3b0d3;
+}
+
+.floating-icon-2 {
+  top: 20%;
+  right: 15%;
+  color: #eacfdf;
+}
+
+.icon-glow {
+  filter: drop-shadow(0 0 20px currentColor);
+}
+
+/* Greeting Badge */
+.greeting-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-lg);
+  background: rgba(211, 176, 211, 0.15);
+  border: 2px solid rgba(211, 176, 211, 0.3);
+  border-radius: 50px;
+  color: #eacfdf;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(211, 176, 211, 0.2);
+}
+
+/* Enhanced Hero Section - removed override, keep only enhancements */
+
+@keyframes rotate-gradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Social Links Premium - BIGGER ICONS - BLUE THEME */
+.social-links {
+  gap: var(--spacing-xl);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.social-link {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(56, 189, 248, 0.1);
+  border: 3px solid rgba(56, 189, 248, 0.4);
+  border-radius: 50%;
+  color: #7dd3fc !important;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+/* Ensure SVG icons are MUCH bigger and visible */
+.social-link svg {
+  width: 40px !important;
+  height: 40px !important;
+  stroke-width: 2;
+  stroke: currentColor;
+  fill: none;
+  display: block;
+  pointer-events: none;
+}
+
+.social-link:hover {
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  color: white !important;
+  box-shadow: 0 12px 40px rgba(14, 165, 233, 0.6);
+  border-color: #0ea5e9;
+  transform: translateY(-10px) scale(1.25);
+}
+
+/* Remove conflicting smooth transitions - not needed with unified color */
+.hero::after {
+  display: none;
+}
+
+.projects-section::before {
+  display: none;
+}
+
+.footer::before {
+  display: none;
+}
+
+/* Premium Hero Buttons */
+.hero-buttons {
+  gap: var(--spacing-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.hero-buttons .btn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: 1.05rem;
+  gap: var(--spacing-sm);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.25);
+}
+
+/* Animated Background Gradients */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Glassmorphism Effects */
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* 3D Effects */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card-3d:hover {
+  transform: rotateY(5deg) rotateX(5deg);
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2.5s infinite;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 1000px 100%;
+}
+
+/* Typing Cursor */
+.hero-title span {
+  border-right: 3px solid var(--color-primary);
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--color-primary);
+  }
+}
+
+/* Pulse Glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(236, 72, 153, 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}

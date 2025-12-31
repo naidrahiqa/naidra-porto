@@ -1,0 +1,64 @@
+/* App Root Styles */
+
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-bg-medium) 100%);
+}
+
+.main-content {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Logout Button */
+.logout-btn {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  color: white;
+  border-color: #dc2626;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+  transform: translateY(-2px);
+}
+
+.logout-btn svg {
+  transition: transform var(--transition-base);
+}
+
+.logout-btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* App-level animations */
+@keyframes app-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.app {
+  animation: app-fade-in 0.3s ease-out;
+}
+
