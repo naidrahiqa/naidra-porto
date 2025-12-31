@@ -20,7 +20,7 @@ const ParticlesBackground = () => {
           value: 'transparent',
         },
       },
-      fpsLimit: 120,
+      fpsLimit: 60, // Reduced from 120
       particles: {
         color: {
           value: ['#6366f1', '#8b5cf6', '#ec4899', '#06b6d4'],
@@ -45,8 +45,9 @@ const ParticlesBackground = () => {
         number: {
           density: {
             enable: true,
+            area: 800,
           },
-          value: 80,
+          value: 40, // Reduced from 80
         },
         opacity: {
           value: 0.3,
