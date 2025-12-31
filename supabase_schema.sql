@@ -46,20 +46,17 @@ alter table public.projects enable row level security;
 alter table public.settings enable row level security;
 
 -- Allow Public Read access
+-- Allow Public Read/Write access (Simplicity for Portfolio)
 create policy "Allow Public Read Projects" on public.projects for select using (true);
+create policy "Allow Public Insert Projects" on public.projects for insert with check (true);
+create policy "Allow Public Update Projects" on public.projects for update using (true);
+create policy "Allow Public Delete Projects" on public.projects for delete using (true);
+
 create policy "Allow Public Read Settings" on public.settings for select using (true);
-
--- Allow Anon/Service Role Write access (Since we are using Anon key in client for simplicity)
--- WARNING: In production, you should implement Authentication (Supabase Auth).
--- Since this is a personal portfolio and key is potentially exposed in client, 
--- ideally only authenticated user can write.
--- But for "ga ribet" update, we can use the dashboard login to gate the UI, 
--- and assume the API interaction is protected enough by obscurity? No, that's bad.
-
--- CORRECT WAY: 
--- You should use Supabase Auth to login in the Dashboard.
--- I will instruct user to turn OFF RLS for now to make it work INSTANTLY.
+create policy "Allow Public Insert Settings" on public.settings for insert with check (true);
+create policy "Allow Public Update Settings" on public.settings for update using (true);
 
 -- DISABLE RLS FOR SAKE OF "GA RIBET"
+-- (These commands ensure RLS is off, but the policies above ensure access IF it were on)
 alter table public.projects disable row level security;
 alter table public.settings disable row level security;

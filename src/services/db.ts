@@ -161,7 +161,7 @@ export const saveSettingsDB = async (settings: PortfolioSettings): Promise<Portf
     // Insert
     result = await supabase
       .from('settings')
-      .insert([{ ...dbPayload, id: undefined }]) // let DB gen ID
+      .insert([dbPayload]) // let DB gen ID
       .select()
       .single();
   }

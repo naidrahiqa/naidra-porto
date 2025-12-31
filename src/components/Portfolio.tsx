@@ -113,11 +113,11 @@ const Portfolio: React.FC = () => {
                 sequence={[
                   settings.name,
                   3000,
+                  'Network Engineer',
+                  2000,
+                  'Cybersecurity',
+                  2000,
                   'Full Stack Developer',
-                  2000,
-                  'Creative Designer',
-                  2000,
-                  'Problem Solver',
                   2000,
                 ]}
                 wrapper="span"

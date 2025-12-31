@@ -92,7 +92,7 @@ const Dashboard: React.FC = () => {
       alert('Settings saved to Cloud Database!');
     } catch (e) {
       console.error(e);
-      alert('Failed to save settings');
+      alert(`Failed to save settings: ${e instanceof Error ? e.message : 'Unknown error'}`);
     } finally {
       setIsLoading(false);
     }
