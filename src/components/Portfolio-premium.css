@@ -291,13 +291,18 @@
 /* 5. Move Everything Up */
 .hero {
   align-items: flex-start !important; /* Align to top instead of center */
-  padding-top: 110px !important; /* Closer to top (Nav is 80px) */
+  padding-top: 90px !important; /* Reduced from 110px to pull content up */
   min-height: 100vh;
 }
 
 /* Fix Title text alignment with description due to padding */
 .hero-title {
   margin-left: -0.4em !important; /* Pull/offset the padding so the TEXT aligns with the description */
+}
+
+/* Additional lift for content */
+.hero-content {
+  margin-top: -20px; /* Slight lift */
 }
 
 @media (max-width: 768px) {
