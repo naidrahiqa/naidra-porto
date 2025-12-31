@@ -8,7 +8,8 @@ import {
   fetchSettings, 
   saveSettingsDB 
 } from '../services/db';
-import { getSettings as getLocalSettings } from '../utils/storage'; 
+import { getSettings as getLocalSettings } from '../utils/storage';
+import toast from 'react-hot-toast'; // Import toast
 import './Dashboard.css';
 
 const Dashboard: React.FC = () => {
@@ -52,9 +53,20 @@ const Dashboard: React.FC = () => {
 
   const handleDeleteProject = async (id: string) => {
     if (confirm('Are you sure you want to delete this project?')) {
-      setIsLoading(true);
-      await deleteProjectDB(id);
-      await loadData();
+      const success = await deleteProjectDB(id);
+      if (success) {
+        await loadData();
+        toast.success('Project deleted successfully', {
+          style: {
+            background: '#333',
+            color: '#fff',
+            border: '1px solid #ef4444', 
+          },
+          icon: '🗑️'
+        });
+      } else {
+        toast.error('Failed to delete project');
+      }
       setIsLoading(false);
     }
   };
@@ -70,9 +82,28 @@ const Dashboard: React.FC = () => {
       await loadData();
       setEditingProject(null);
       setIsAddingProject(false);
-      alert("Project saved to Cloud Database!");
+      toast.success(editingProject ? 'Project updated successfully!' : 'Project created successfully!', {
+        duration: 4000,
+        position: 'top-center',
+        style: {
+          background: 'rgba(16, 185, 129, 0.9)',
+          color: '#fff',
+          backdropFilter: 'blur(10px)',
+          fontWeight: 'bold',
+          border: '1px solid rgba(255,255,255,0.2)',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+        },
+        icon: '🚀'
+      });
     } catch (e: any) {
-      alert(`Error saving project: ${e.message || JSON.stringify(e)}`);
+      toast.error(`Error: ${e.message || 'Something went wrong'}`, {
+        duration: 5000,
+        style: {
+          background: 'rgba(239, 68, 68, 0.9)',
+          color: '#fff', 
+          backdropFilter: 'blur(10px)',
+        }
+      });
       console.error(e);
     } finally {
       setIsLoading(false);
@@ -89,10 +120,16 @@ const Dashboard: React.FC = () => {
     try {
       await saveSettingsDB(newSettings);
       setSettings(newSettings);
-      alert('Settings saved to Cloud Database!');
+      toast.success('Settings saved successfully!', {
+          icon: '⚙️',
+          style: {
+            background: '#3b82f6',
+            color: 'white',
+          }
+      });
     } catch (e) {
       console.error(e);
-      alert(`Failed to save settings: ${e instanceof Error ? e.message : 'Unknown error'}`);
+      toast.error(`Failed to save settings: ${e instanceof Error ? e.message : 'Unknown error'}`);
     } finally {
       setIsLoading(false);
     }

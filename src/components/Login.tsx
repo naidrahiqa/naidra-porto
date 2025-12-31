@@ -24,7 +24,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     }
 
     // Check password (default: admin123)
-    const correctPassword = 'Naidrahiqf@1312'; // You can change this
+    const correctPassword = 'Naidrahiqf@1312'; // You can change this (Updated)
     
     if (password === correctPassword) {
       setError('');
