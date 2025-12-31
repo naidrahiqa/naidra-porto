@@ -16,7 +16,7 @@ const Portfolio: React.FC = () => {
   const [settings, setSettings] = useState<PortfolioSettings>(getLocalSettings());
   const [filter, setFilter] = useState<'all' | 'featured'>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,8 +29,6 @@ const Portfolio: React.FC = () => {
         setSettings(settData);
       } catch (error) {
         console.error("Failed to fetch cloud data, using fallback", error);
-      } finally {
-        setIsLoading(false);
       }
     };
 
