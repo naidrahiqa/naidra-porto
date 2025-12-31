@@ -88,14 +88,15 @@
   letter-spacing: 0.1em;
   border: 2px solid var(--color-neutral-light);
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.9);
+  background: #fff; /* Force white bg */
+  color: #0f172a; /* Force dark text */
   transition: all var(--transition-base);
   outline: none;
 }
 
 .login-input:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
   background: #fff;
   transform: scale(1.02);
 }

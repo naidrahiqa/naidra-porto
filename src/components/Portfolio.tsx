@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+
 import { TypeAnimation } from 'react-type-animation';
-import { FiMail, FiDownload, FiGithub, FiLinkedin, FiTwitter, FiStar, FiCode, FiZap } from 'react-icons/fi';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import type { Project, PortfolioSettings } from '../types';
 import { fetchProjects, fetchSettings } from '../services/db';
 import { getSettings as getLocalSettings } from '../utils/storage'; 
 import ParticlesBackground from './ParticlesBackground';
+import ParticlesBackground from './ParticlesBackground';
+import InteractiveCard from './InteractiveCard';
 import './Portfolio.css';
 import './Portfolio-premium.css';
 
@@ -57,174 +59,105 @@ const Portfolio: React.FC = () => {
       <ParticlesBackground />
 
       {/* Hero Section */}
-      <section className="hero wave-pattern">
-        <div className="container">
+      <section className="hero">
+        <div className="container hero-container">
+          {/* Left Column: Text & Content */}
           <motion.div 
             className="hero-content"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Decorative floating elements */}
-            <motion.div
-              className="floating-icon floating-icon-1"
-              animate={{ 
-                y: [0, -20, 0],
-                rotate: [0, 10, -10, 0]
-              }}
-              transition={{ 
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <FiCode className="icon-glow" />
-            </motion.div>
-            
-            <motion.div
-              className="floating-icon floating-icon-2"
-              animate={{ 
-                y: [0, 20, 0],
-                rotate: [0, -10, 10, 0]
-              }}
-              transition={{ 
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1
-              }}
-            >
-              <FiZap className="icon-glow" />
-            </motion.div>
-
-            {/* Greeting badge */}
-            <motion.div 
-              className="greeting-badge"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring" }}
-            >
-              <FiStar /> Portfolio Showcase
-            </motion.div>
-
-            {/* Animated Hero Title */}
-            <h1 className="hero-title">
+            {/* Main Title with Greetings */}
+            <div className="hero-title-wrapper">
               <TypeAnimation
-                sequence={[
-                  settings.name,
-                  3000,
-                  'Network Engineer',
+                sequence={
+                  settings.greetings && settings.greetings.length > 0 
+                  ? settings.greetings.flatMap(g => [g, 2000]) 
+                  : [
+                  'Halo',
                   2000,
-                  'Cybersecurity',
+                  'Hello',
                   2000,
-                  'Full Stack Developer',
+                  'Konnichiwa',
+                  2000,
+                  'Sugeng Rawuh',
                   2000,
                 ]}
-                wrapper="span"
+                wrapper="h1"
                 speed={50}
+                className="hero-title text-white"
                 repeat={Infinity}
               />
-            </h1>
+            </div>
             
-            <motion.p 
-              className="hero-subtitle"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              {settings.title}
-            </motion.p>
-            
-            <motion.p 
-              className="hero-bio"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              {settings.bio}
-            </motion.p>
-            
-            <motion.div 
-              className="hero-buttons"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-            >
-              <motion.a 
-                href={`mailto:${settings.email}`} 
-                className="btn btn-primary"
-                whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(99, 102, 241, 0.4)' }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FiMail /> Contact Me
-              </motion.a>
-              {settings.resumeUrl && (
-                <motion.a 
-                  href={settings.resumeUrl} 
-                  className="btn btn-secondary" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FiDownload /> Download Resume
-                </motion.a>
-              )}
-            </motion.div>
+            {/* Description */}
+            <div className="hero-description-wrapper">
+              <span className="static-text">I am <span className="highlight-text">{settings.name}</span>. I am a 1st-semester Software Engineering student.</span>
+            </div>
+          </motion.div>
 
-            {/* Social Links with Icons */}
-            <motion.div 
-              className="social-links"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
-            >
-              {settings.github && (
-                <motion.a 
-                  href={settings.github} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="social-link"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  title="GitHub"
-                >
-                  <FiGithub size={24} />
-                  <span className="sr-only">GitHub</span>
-                </motion.a>
-              )}
-              {settings.linkedin && (
-                <motion.a 
-                  href={settings.linkedin} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="social-link"
-                  whileHover={{ scale: 1.2, rotate: -5 }}
-                  title="LinkedIn"
-                >
-                  <FiLinkedin size={24} />
-                  <span className="sr-only">LinkedIn</span>
-                </motion.a>
-              )}
-              {settings.twitter && (
-                <motion.a 
-                  href={settings.twitter} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="social-link"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  title="Twitter"
-                >
-                  <FiTwitter size={24} />
-                  <span className="sr-only">Twitter</span>
-                </motion.a>
-              )}
-            </motion.div>
+          {/* Right Column: Image & Chat Widget */}
+          <motion.div 
+            className="hero-visuals"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+             {/* Interactive Dev Card integrated into the layout */}
+            <div className="hero-chat-container" style={{maxWidth: '350px'}}>
+               <InteractiveCard />
+            </div>
+
+            {/* Background Illustration/Image (Placeholder for now based on image) */}
+            <div className="hero-illustration">
+              {/* You can replace this with an actual img tag if you have the asset */}
+              <div className="illustration-placeholder"></div> 
+            </div>
           </motion.div>
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="about" className="section bg-medium">
+        <div className="container">
+           <h2 className="section-title text-center">About Me</h2>
+             <div className="about-content text-center max-w-2xl mx-auto">
+               <p className="about-text" style={{whiteSpace: 'pre-line'}}>
+                 {settings.aboutDescription || 
+                  `${settings.bio}\n\nI am passionate about building scalable software solutions and exploring the depths of cybersecurity. Currently navigating through my freshman year in Software Engineering, constantly learning and applying new technologies.`
+                 }
+               </p>
+             </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="section">
+        <div className="container">
+           <h2 className="section-title text-center">Skills</h2>
+           <div className="skills-grid">
+              {(settings.skills && settings.skills.length > 0 ? settings.skills : [
+                { title: 'Frontend', skills: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'] },
+                { title: 'Backend', skills: ['Node.js', 'Python', 'Go', 'Supabase'] },
+                { title: 'Database', skills: ['PostgreSQL', 'MySQL', 'MongoDB'] },
+                { title: 'Tools', skills: ['Git', 'Docker', 'VS Code', 'Figma'] }
+              ]).map(category => (
+                <div key={category.title} className="skill-card card">
+                  <h3 className="text-xl font-bold mb-4 gradient-text">{category.title}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.map(skill => (
+                      <span key={skill} className="skill-tag">{skill}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+           </div>
+        </div>
+      </section>
+
       {/* Projects Section */}
-      <section className="projects-section">
+      <section id="projects" className="projects-section bg-medium">
         <div className="container">
           <div className="section-header">
             <h2 className="section-title">Projects</h2>
@@ -275,8 +208,36 @@ const Portfolio: React.FC = () => {
         </div>
       </section>
 
+      {/* Contact Section */}
+      <section id="contact" className="section">
+         <div className="container text-center">
+            <h2 className="section-title">Contact Me</h2>
+            <p className="mb-8 text-neutral-400">Feel free to reach out through any of these platforms:</p>
+            
+            <div className="contact-links flex flex-wrap justify-center gap-4">
+              {(settings.socialLinks && settings.socialLinks.length > 0 ? settings.socialLinks : [
+                { platform: 'Instagram', url: '#', color: '#E1306C' },
+                { platform: 'GitHub', url: settings.github || '#', color: '#333' },
+                { platform: 'LinkedIn', url: settings.linkedin || '#', color: '#0077B5' },
+                { platform: 'Twitter', url: settings.twitter || '#', color: '#000000' }
+              ]).map((social) => (
+                 <a 
+                   key={social.platform} 
+                   href={social.url} 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   className="btn btn-outline"
+                   style={{ borderColor: social.color || '#fff' }}
+                 >
+                   {social.platform}
+                 </a>
+              ))}
+            </div>
+         </div>
+      </section>
+
       {/* Footer */}
-      <footer className="footer">
+      <footer className="footer bg-medium">
         <div className="container">
           <div className="footer-content">
             <p className="footer-text">

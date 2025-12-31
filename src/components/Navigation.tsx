@@ -67,19 +67,37 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
           title="Triple-click for secret access 🔒"
         >
           <FiCode className="brand-icon" />
-          <span className="brand-text-en">Portfolio</span>
+          <span className="brand-text-en">Git's</span>
         </motion.div>
 
-        {/* Desktop Navigation - Only Portfolio visible */}
+        {/* Desktop Navigation */}
         <div className="nav-links">
-          <motion.button
-            className={`nav-link ${currentPage === 'portfolio' ? 'active' : ''}`}
-            onClick={() => onNavigate('portfolio')}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="nav-en">Home</span>
-          </motion.button>
+          {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item) => (
+            <motion.button
+              key={item}
+              className={`nav-link`}
+              onClick={() => {
+                const sectionId = item.toLowerCase();
+                // If on dashboard, go to portfolio first
+                if (currentPage === 'dashboard') {
+                  onNavigate('portfolio');
+                  // Wait for render then scroll
+                  setTimeout(() => {
+                    document.getElementById(sectionId === 'home' ? 'root' : sectionId)?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                } else {
+                  // Already on portfolio, just scroll
+                   document.getElementById(sectionId === 'home' ? 'root' : sectionId)?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="nav-text">{item}</span>
+            </motion.button>
+          ))}
+          
+{/* Theme toggle removed as requested */}
         </div>
 
         {/* Mobile Menu Toggle */}

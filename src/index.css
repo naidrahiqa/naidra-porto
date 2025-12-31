@@ -8,34 +8,30 @@
    CSS Variables - Modern Color Palette
    =================================== */
 :root {
-  /* Primary Colors - Vibrant & Modern */
-  --color-primary: #6366f1; /* Vibrant Indigo */
-  --color-secondary: #8b5cf6; /* Rich Purple */
-  --color-accent: #ec4899; /* Pink Accent */
+  /* Primary Colors - Vibrant Green Theme */
+  --color-primary: #10b981; /* Emerald 500 */
+  --color-secondary: #059669; /* Emerald 600 */
+  --color-accent: #34d399; /* Emerald 400 */
 
   /* Neutral & Background Colors */
   --color-bg-light: #f8fafc; /* Ultra Light Gray */
-  --color-bg-medium: #f1f5f9; /* Light Gray */
-  --color-bg-dark: #0f172a; /* Dark Slate */
-  --color-neutral-light: #cbd5e1; /* Light Slate */
-  --color-neutral-medium: #64748b; /* Medium Slate */
+  --color-bg-medium: #1e293b; /* Slate 800 */
+  --color-bg-dark: #020617; /* Slate 950 - Almost Black */
+  --color-neutral-light: #334155; /* Slate 700 */
+  --color-neutral-medium: #475569; /* Slate 600 */
 
-  /* Additional Accent Colors */
-  --color-blue: #3b82f6; /* Bright Blue */
-  --color-cyan: #06b6d4; /* Cyan */
-  --color-green: #10b981; /* Emerald Green */
-  --color-orange: #f59e0b; /* Amber Orange */
+  /* Text Colors for Dark Mode Default */
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-text-light: #f1f5f9;
 
-  /* Text Colors */
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #475569;
-  --color-text-muted: #94a3b8;
-  --color-text-light: #f8fafc;
-
-  /* Shadows & Effects - More dramatic */
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  /* Shadows & Effects */
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  --shadow-color: 0 10px 40px rgba(16, 185, 129, 0.3);
   --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   --shadow-color: 0 10px 40px rgba(99, 102, 241, 0.4);
 
@@ -83,9 +79,9 @@ body {
   font-family: var(--font-sans);
   background: linear-gradient(
     135deg,
-    #667eea 0%,
-    #764ba2 50%,
-    #f093fb 100%
+    #020617 0%,
+    #0f172a 50%,
+    #1e293b 100%
   );
   background-attachment: fixed;
   color: var(--color-text-primary);
@@ -389,20 +385,25 @@ select {
   padding: var(--spacing-sm) var(--spacing-md);
   font-family: var(--font-sans);
   font-size: 1rem;
-  color: var(--color-text-primary);
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid var(--color-neutral-light);
+  color: var(--color-text-light); /* Light text for dark bg */
+  background: rgba(15, 23, 42, 0.6); /* Dark semi-transparent bg */
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
   outline: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 input:focus,
 textarea:focus,
 select:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-  background: #fff;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1); /* Green glow */
+  background: rgba(15, 23, 42, 0.8);
 }
 
 textarea {

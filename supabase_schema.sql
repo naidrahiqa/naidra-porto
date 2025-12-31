@@ -60,3 +60,10 @@ create policy "Allow Public Update Settings" on public.settings for update using
 -- (These commands ensure RLS is off, but the policies above ensure access IF it were on)
 alter table public.projects disable row level security;
 alter table public.settings disable row level security;
+
+-- 4. New Columns for Go Backend Support (Run this if you already created the tables)
+ALTER TABLE public.settings ADD COLUMN IF NOT EXISTS greetings text[];
+ALTER TABLE public.settings ADD COLUMN IF NOT EXISTS about_description text;
+ALTER TABLE public.settings ADD COLUMN IF NOT EXISTS skills text[];
+-- social_links is mapped to existing columns (github, linkedin, etc) or can be added as jsonb if needed in future
+

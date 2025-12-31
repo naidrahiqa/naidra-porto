@@ -7,6 +7,8 @@ import { getProjects as getLocalProjects, getSettings as getLocalSettings } from
 // =======================
 
 export const fetchProjects = async (): Promise<Project[]> => {
+
+
   const { data, error } = await supabase
     .from('projects')
     .select('*')
@@ -22,6 +24,8 @@ export const fetchProjects = async (): Promise<Project[]> => {
 };
 
 export const createProject = async (project: Omit<Project, 'id' | 'createdAt' | 'updatedAt'>): Promise<Project | null> => {
+
+
   // Map to snake_case and sanitise (remove camelCase keys irrelevant to DB)
   const dbPayload = {
     title: project.title,
@@ -53,6 +57,8 @@ export const createProject = async (project: Omit<Project, 'id' | 'createdAt' | 
 };
 
 export const updateProjectDB = async (id: string, updates: Partial<Project>): Promise<Project | null> => {
+
+
    const dbPayload: any = { updated_at: new Date().toISOString() };
    
    if (updates.title !== undefined) dbPayload.title = updates.title;
@@ -90,6 +96,8 @@ const mapProjectFromDB = (p: any): Project => ({
 });
 
 export const deleteProjectDB = async (id: string): Promise<boolean> => {
+
+
   const { error } = await supabase
     .from('projects')
     .delete()
@@ -107,6 +115,8 @@ export const deleteProjectDB = async (id: string): Promise<boolean> => {
 // =======================
 
 export const fetchSettings = async (): Promise<PortfolioSettings> => {
+
+
   const { data, error } = await supabase
     .from('settings')
     .select('*')
@@ -121,6 +131,8 @@ export const fetchSettings = async (): Promise<PortfolioSettings> => {
 };
 
 export const saveSettingsDB = async (settings: PortfolioSettings): Promise<PortfolioSettings | null> => {
+
+
   // Check if settings row exists
   const { data: existing, error: checkError } = await supabase
     .from('settings')
@@ -145,6 +157,11 @@ export const saveSettingsDB = async (settings: PortfolioSettings): Promise<Portf
     linkedin: settings.linkedin,
     twitter: settings.twitter,
     website: settings.website,
+    // Content fields - DB must have these columns or JSONB 'content' column
+    greetings: settings.greetings,
+    about_description: settings.aboutDescription,
+    skills: settings.skills,
+    social_links: settings.socialLinks,
     updated_at: new Date().toISOString()
   };
 

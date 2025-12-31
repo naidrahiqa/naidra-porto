@@ -215,3 +215,236 @@
 .pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
+
+/* ===================================
+   USER FEEDBACK FIXES
+   =================================== */
+
+/* 1. Greeting Alignment - Move more to the left */
+/* 1. Greeting Alignment - Reset and Standardize */
+.hero-title-wrapper, .hero-description-wrapper {
+  margin-left: 0;
+  left: 0;
+  text-align: left;
+}
+
+.hero-content {
+  text-align: left;
+  /* Ensure parent container allows full left travel if needed, but standard container padding is usually desired. */
+}
+
+/* 2. Skills Font Visibility */
+.skill-tag {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff; /* High contrast */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.skill-tag:hover {
+  background: var(--color-primary, #10b981);
+  color: #0f172a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+  border-color: transparent;
+}
+
+/* 3. About Me Centering */
+#about .container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.about-content {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 42rem !important; /* ensure max-w-2xl logic holds */
+  width: 100%;
+}
+
+/* 4. Skills Card High Contrast Box */
+.skill-card {
+  background: rgba(15, 23, 42, 0.6) !important; /* Dark blue-black background */
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+  backdrop-filter: blur(12px) !important;
+  color: #fff !important;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.skill-card:hover {
+  border-color: rgba(56, 189, 248, 0.5) !important;
+  transform: translateY(-5px);
+  background: rgba(15, 23, 42, 0.8) !important;
+}
+
+/* 5. Move Everything Up */
+.hero {
+  align-items: flex-start !important; /* Align to top instead of center */
+  padding-top: 110px !important; /* Closer to top (Nav is 80px) */
+  min-height: 100vh;
+}
+
+/* Fix Title text alignment with description due to padding */
+.hero-title {
+  margin-left: -0.4em !important; /* Pull/offset the padding so the TEXT aligns with the description */
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 100px !important;
+    align-items: center !important; /* Keep centered on mobile */
+  }
+  
+  .hero-title {
+    margin-left: 0 !important; /* Reset on mobile usually looking better centered */
+  }
+}
+
+/* ===================================
+   Interactive Card (Replacement for Chat)
+   =================================== */
+.interactive-card-container {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 400px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.interactive-card-content {
+  position: absolute;
+  inset: 10px;
+  background: rgba(15, 23, 42, 0.85); /* Dark background */
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.card-main-icon {
+  font-size: 28px;
+  color: white;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: white;
+  margin: 0;
+  font-weight: 700;
+}
+
+.card-subtitle {
+  color: #34d399;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: #34d399;
+  border-radius: 50%;
+  animation: pulse-glow 1.5s infinite;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  color: #94a3b8;
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  display: block;
+  font-size: 0.9rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.visual-code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.c-pink { color: #c084fc; }
+.c-blue { color: #38bdf8; }
+.c-green { color: #4ade80; }
+.c-purple { color: #a855f7; }
+.c-yellow { color: #facc15; }
+
+.indent { padding-left: 15px; }

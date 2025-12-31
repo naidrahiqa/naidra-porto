@@ -636,6 +636,60 @@ const SettingsTab: React.FC<SettingsTabProps> = ({ settings, onUpdateSettings })
       </div>
 
       <div className="card mt-lg">
+        <h2>Content configuration</h2>
+        
+        <div className="form-group">
+          <label htmlFor="greetings">Hero Greetings (comma separated)</label>
+          <input
+            id="greetings"
+            type="text"
+            value={formData.greetings ? formData.greetings.join(', ') : ''}
+            onChange={(e) => setFormData({ ...formData, greetings: e.target.value.split(',').map(s => s.trim()) })}
+            placeholder="Halo, Hello, Konnichiwa"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="aboutDescription">About Description</label>
+          <textarea
+            id="aboutDescription"
+            rows={6}
+            value={formData.aboutDescription || ''}
+            onChange={(e) => setFormData({ ...formData, aboutDescription: e.target.value })}
+            placeholder="Detailed text about yourself..."
+          />
+        </div>
+
+        <div className="form-group">
+           <label htmlFor="skills">Skills JSON (Advanced)</label>
+           <textarea
+             id="skills"
+             rows={8}
+             style={{fontFamily: 'monospace', fontSize: '0.85rem'}}
+             value={JSON.stringify(formData.skills || [], null, 2)}
+             onChange={(e) => {
+               try {
+                 const parsed = JSON.parse(e.target.value);
+                 setFormData({ ...formData, skills: parsed });
+               } catch (err) {
+                 // Allow typing invalid json, but don't save it to state if valid or maybe store generic text?
+                 // For now, let's just let it be manual
+               }
+             }}
+             onBlur={(e) => {
+                try {
+                   const parsed = JSON.parse(e.target.value);
+                   setFormData({ ...formData, skills: parsed });
+                } catch(err) {
+                   toast.error("Invalid JSON for skills");
+                }
+             }}
+           />
+           <small className="text-muted">{'Edit the JSON structure for skills (e.g. [{"title": "Frontend", "skills": ["React"]}])'}</small>
+        </div>
+      </div>
+
+      <div className="card mt-lg">
         <h2>Social Links</h2>
 
         <div className="form-group">
