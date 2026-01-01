@@ -291,7 +291,7 @@
 /* 5. Move Everything Up */
 .hero {
   align-items: flex-start !important; /* Align to top instead of center */
-  padding-top: 90px !important; /* Reduced from 110px to pull content up */
+  padding-top: 75px !important; /* Reduced from 90px to pull content up */
   min-height: 100vh;
 }
 
@@ -453,3 +453,67 @@
 .c-yellow { color: #facc15; }
 
 .indent { padding-left: 15px; }
+
+/* ===================================
+   ENHANCED INTERACTIVITY
+   =================================== */
+
+/* 1. Hero Title - Rubber Band Effect */
+.hero-title {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  cursor: default;
+  display: inline-block; /* Ensure transform works */
+}
+
+.hero-title:hover {
+  transform: skew(-2deg) scale(1.05) translateY(-5px) !important;
+  box-shadow: 15px 15px 0 rgba(16, 185, 129, 0.2);
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+  letter-spacing: 0.02em;
+}
+
+/* 2. Skill Tags - Pop & Rotate */
+.skill-tag {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  cursor: default;
+}
+
+.skill-tag:hover {
+  background: #fff !important;
+  color: var(--color-primary) !important;
+  transform: translateY(-5px) rotate(-3deg) scale(1.1) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/* 3. Project Cards - Levitation */
+.project-card {
+  transition: all 0.4s ease-out !important;
+}
+
+.project-card:hover {
+  transform: translateY(-12px) !important;
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.3), 
+    0 10px 10px -5px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(16, 185, 129, 0.1) !important; /* Green glow hint */
+}
+
+/* 4. Buttons - Press Effect */
+.btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn:active {
+  transform: scale(0.95) !important;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* 5. Navigation Links - Glow Underline */
+.nav-link::after {
+  height: 3px !important;
+  box-shadow: 0 0 10px var(--color-primary);
+}

@@ -3,7 +3,7 @@
    =================================== */
 
 .portfolio {
-  margin-top: -3em;
+  padding-top: 1px;
   min-height: 100vh;
   background: linear-gradient(180deg, 
     #0a1929 0%, 
@@ -12,6 +12,11 @@
     #0d2238 75%,
     #0a1929 100%
   );
+}
+
+.section {
+  padding: var(--spacing-3xl) 0;
+  position: relative;
 }
 
 /* ===================================
@@ -61,13 +66,15 @@
 
 /* Hero Title */
 .hero-title {
-  font-size: clamp(4rem, 8vw, 7rem);
+  font-size: clamp(3rem, 6vw, 5.5rem);
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: var(--spacing-lg);
   color: #fff;
   background-color: var(--color-primary);
   padding: 0.2em 0.4em;
+  display: inline-block;
+  white-space: nowrap;
   display: inline-block;
   transform: skew(-2deg); /* Slight stylistic skew like the image */
   min-height: 1.2em;
